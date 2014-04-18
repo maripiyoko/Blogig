@@ -3,3 +3,8 @@
 body {
   font-family: Meiryo, 'メイリオ', 'Hiragino Kaku Gothic Pro', sans-serif;
 }
+
+.pagination .current a {
+  color: #666;
+  cursor: default;
+}
