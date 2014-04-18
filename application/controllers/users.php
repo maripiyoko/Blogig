@@ -13,13 +13,20 @@ class Users extends CI_Controller
         $this->login();
     }
 
+    public function home()
+    {
+        if($this->_display_home_page_if_user_logged_in()) {
+            return;
+        } else {
+            $this->login();
+        }
+    }
+
     public function login()
     {
         if($this->_display_home_page_if_user_logged_in()) {
             return;
         }
-        $this->load->helper('form');
-        $this->load->library('form_validation');
 
         $this->form_validation->set_rules('user_name', 'User name', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -38,7 +45,6 @@ class Users extends CI_Controller
                 $this->_display_home_page($query['id'], $query['blog_name']);
             }
         }
-
     }
 
     function _save_blog_info($query)
@@ -54,6 +60,9 @@ class Users extends CI_Controller
 
     function _display_home_page_if_user_logged_in()
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $user_data_array = array(
             $this->session->userdata('user_id'),
             $this->session->userdata('user_name'),
