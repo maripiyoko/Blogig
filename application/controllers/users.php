@@ -101,10 +101,18 @@ class Users extends CI_Controller
             'base_url' => site_url("users/home"),
             'total_rows' => $result['count'],
             'per_page' => $limit,
-            'full_tag_open' => '<div class="pagination">',
-            'full_tag_close' => '</div>',
-            'num_tag_open' => '<span class="page">',
-            'num_tag_close' => '</span>');
+            'full_tag_open' => '<ul class="pagination">',
+            'full_tag_close' => '</ul>',
+            'cur_tag_open' => '<li class="current"><a href="#">',
+            'cur_tag_close' => '</a></li>',
+            'next_link' => '»',
+            'next_tag_open' => '<li>',
+            'next_tag_close' => '</li>',
+            'prev_link' => '«',
+            'prev_tag_open' => '<li>',
+            'prev_tag_close' => '</li>',
+            'num_tag_open' => '<li>',
+            'num_tag_close' => '</li>');
         $this->pagination->initialize($config);
 
         $data['title'] = $blog_name;
