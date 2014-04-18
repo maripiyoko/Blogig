@@ -23,5 +23,22 @@ class Article_model extends CI_Model
         }*/
         return $query->result();
     }
+
+    public function create($user_id)
+    {
+        //$this->output->enable_profiler(TRUE);
+
+        $today = date('Y-m-d H:i:s');
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'content' => $this->input->post('content'),
+            'date_created' => $today,
+            'date_modified' => $today,
+            'user_id' => $user_id
+        );
+
+        return $this->db->insert('articles', $data);
+    }
 }
 /* end of models/article_model.php */
