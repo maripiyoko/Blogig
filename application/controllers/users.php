@@ -13,9 +13,9 @@ class Users extends CI_Controller
         $this->login();
     }
 
-    public function home()
+    public function home($offset = 0)
     {
-        if($this->_display_home_page_if_user_logged_in()) {
+        if($this->_display_home_page_if_user_logged_in($offset)) {
             return;
         } else {
             $this->login();
@@ -58,7 +58,7 @@ class Users extends CI_Controller
         $this->session->set_userdata($user_data);
     }
 
-    function _display_home_page_if_user_logged_in()
+    function _display_home_page_if_user_logged_in($offset = 0)
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -74,7 +74,7 @@ class Users extends CI_Controller
             }
         }
         $this->_display_home_page($this->session->userdata('user_id'),
-            $this->session->userdata('blog_name'));
+            $this->session->userdata('blog_name'), $offset);
         //echo 'User is already logged in!';
         return TRUE;
     }
@@ -87,9 +87,26 @@ class Users extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    function _display_home_page($user_id, $blog_name)
+    function _display_home_page($user_id, $blog_name, $offset)
     {
-        $data['articles'] = $this->article_model->get_articles($user_id);
+        //echo "offset".$offset;
+        //$this->output->enable_profiler(TRUE);
+        $limit = 5;
+        $result = $this->article_model->get_articles($user_id, $limit, $offset);
+        $data['articles'] = $result['query'];
+
+        // pagination settings
+        $this->load->library('pagination');
+        $config = array(
+            'base_url' => site_url("users/home"),
+            'total_rows' => $result['count'],
+            'per_page' => $limit,
+            'full_tag_open' => '<div class="pagination">',
+            'full_tag_close' => '</div>',
+            'num_tag_open' => '<span class="page">',
+            'num_tag_close' => '</span>');
+        $this->pagination->initialize($config);
+
         $data['title'] = $blog_name;
         $this->load->view('templates/header', $data);
         $this->load->view('home');
