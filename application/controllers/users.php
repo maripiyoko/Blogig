@@ -33,7 +33,7 @@ class Users extends CI_Controller
 
         if ($this->form_validation->run() === FALSE)
         {
-            $this->_display_login_page(array());
+            $this->_display_login_page();
         } else {
             $query = $this->user_model->login();
             if(isset($query['error'])) {
@@ -79,7 +79,7 @@ class Users extends CI_Controller
         return TRUE;
     }
 
-    function _display_login_page($data)
+    function _display_login_page($data = array())
     {
         $data['title'] = 'Login';
         $this->load->view('templates/header', $data);

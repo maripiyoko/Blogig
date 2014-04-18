@@ -19,17 +19,25 @@ class Articles extends CI_Controller
 
         if($this->form_validation->run() === FALSE)
         {
-            $data['title'] = '新しいブログ記事を作成';
-            $this->load->view('templates/header', $data);
-            $this->load->view('articles/create');
-            $this->load->view('templates/footer');
+            $this->_display_create_page();
         } else {
             // save article
-            $this->article_model->create($this->session->userdata('user_id'));
-            redirect('home');
+            $result = $this->article_model->create($this->session->userdata('user_id'));
+            if($result) {
+                redirect('home');
+            } else {
+                $data['error'] = '保存できませんでした。';
+                $this->_display_create_page();
+            }
         }
+    }
 
-
+    function _display_create_page($data = array())
+    {
+        $data['title'] = '新しいブログ記事を作成';
+        $this->load->view('templates/header', $data);
+        $this->load->view('articles/create');
+        $this->load->view('templates/footer');
     }
 }
 /* end of controllers/articles.php */
