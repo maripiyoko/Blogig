@@ -7,6 +7,9 @@ class Articles extends CI_Controller
         parent::__construct();
         $this->load->model('article_model');
         $this->load->library('session');
+        $this->load->library('md');
+        $html = $this->md->defaultTransform('+ list sample');
+        echo $html;
     }
 
     public function create()
