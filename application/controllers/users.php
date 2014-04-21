@@ -82,7 +82,7 @@ class Users extends CI_Controller
 
     function _display_login_page($data = array())
     {
-        $data['title'] = 'Login';
+        $data['page_title'] = 'Login';
         $this->load->view('templates/header', $data);
         $this->load->view('login');
         $this->load->view('templates/footer');
@@ -116,7 +116,7 @@ class Users extends CI_Controller
             'num_tag_close' => '</li>');
         $this->pagination->initialize($config);
 
-        $data['title'] = $blog_name;
+        $data['page_title'] = $blog_name;
         $this->load->view('templates/header', $data);
         $this->load->view('home');
         $this->load->view('articles/index', $data);

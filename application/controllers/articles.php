@@ -34,7 +34,7 @@ class Articles extends CI_Controller
 
     function _display_create_page($data = array())
     {
-        $data['title'] = '新しいブログ記事を作成';
+        $data['page_title'] = '新しいブログ記事を作成';
         $this->load->view('templates/header', $data);
         $this->load->view('articles/create');
         $this->load->view('templates/footer');
