@@ -3,3 +3,13 @@
 body {
   font-family: Meiryo, 'メイリオ', 'Hiragino Kaku Gothic Pro', sans-serif;
 }
+
+.title {
+  position: relative;
+}
+
+.title .delete {
+  position: absolute;
+  right: 20px;
+  top: 3px;
+}
