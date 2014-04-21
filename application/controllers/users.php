@@ -87,7 +87,7 @@ class Users extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    function _display_home_page($user_id, $blog_name, $offset)
+    function _display_home_page($user_id, $blog_name, $offset = 0)
     {
         //echo "offset".$offset;
         //$this->output->enable_profiler(TRUE);
@@ -103,7 +103,7 @@ class Users extends CI_Controller
             'per_page' => $limit,
             'full_tag_open' => '<ul class="pagination">',
             'full_tag_close' => '</ul>',
-            'cur_tag_open' => '<li class="current"><a href="#">',
+            'cur_tag_open' => '<li class="active"><a href="#">',
             'cur_tag_close' => '</a></li>',
             'next_link' => '»',
             'next_tag_open' => '<li>',
