@@ -6,6 +6,7 @@ class Users extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('article_model');
         $this->load->library('session');
+        $this->load->library('md');
     }
 
     public function index()
