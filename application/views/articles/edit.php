@@ -23,11 +23,6 @@
         </form>
     </div>
     <div class="col-sm-6">
-        <div class="preview-title">
-            <h2><?php echo $title; ?></h2>
-        </div>
-        <div class="preview-content">
-            <?php echo $html = $this->md->transform($content); ?>
-        </div>
+        <?php $this->load->view('articles/preview');?>
     </div>
 </div>

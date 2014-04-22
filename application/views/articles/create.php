@@ -22,7 +22,6 @@
         </form>
     </div>
     <div class="col-sm-6">
-        <div class="preview-title"></div>
-        <div class="preview-content"></div>
+        <?php $this->load->view('articles/preview');?>
     </div>
 </div>
