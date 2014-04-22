@@ -19,7 +19,7 @@
                 <textarea class="form-control" name="content" id="content" rows="20"><?php echo $content; ?></textarea>
             </div>
             <input type="submit" class="btn btn-primary" value="保存">
-            <input type="button" class="btn" value="キャンセル">
+            <?php echo anchor("articles/index/", 'キャンセル', array('class' => "btn")); ?>
         </form>
     </div>
 </div>

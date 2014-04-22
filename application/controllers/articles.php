@@ -82,7 +82,7 @@ class Articles extends CI_Controller
             // save article
             $result = $this->article_model->create($this->session->userdata('user_id'));
             if($result) {
-                redirect('home');
+                $this->index();
             } else {
                 $data['error'] = '保存できませんでした。';
                 $this->_display_create_page();
