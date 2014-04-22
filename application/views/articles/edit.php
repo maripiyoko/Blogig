@@ -24,7 +24,7 @@
     </div>
     <div class="col-sm-6">
         <div class="preview-title">
-            <h1><?php echo $title; ?></h1>
+            <h2><?php echo $title; ?></h2>
         </div>
         <div class="preview-content">
             <?php echo $html = $this->md->transform($content); ?>
