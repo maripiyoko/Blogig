@@ -109,7 +109,10 @@ class Articles extends CI_Controller
     {
         //$this->output->enable_profiler(TRUE);
         $id = $this->input->post('id');
-        echo 'TODO delete : '.$id;
+        if($this->article_model->delete($id)) {
+            $data['success'] = '削除しました';
+        }
+        $this->index(0, $data);
     }
 
     public function edit($id)
