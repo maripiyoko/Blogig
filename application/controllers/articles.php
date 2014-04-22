@@ -7,16 +7,78 @@ class Articles extends CI_Controller
         parent::__construct();
         $this->load->model('article_model');
         $this->load->library('session');
+        $this->load->library('md');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+    }
+
+    public function index($offset = 0)
+    {
+        if($this->_is_user_logged_in()) {
+            $blog_name = $this->session->userdata('blog_name');
+            $user_id = $this->session->userdata('user_id');
+            $limit = 5;
+            $result = $this->article_model->get_articles($user_id, $limit, $offset);
+            $data['articles'] = $result['query'];
+
+            $this->_init_pagination($limit, $result['count']);
+
+            $data['page_title'] = $blog_name;
+            $this->load->view('templates/header', $data);
+            $this->load->view('home');
+            $this->load->view('articles/index', $data);
+            $this->load->view('templates/footer');
+        } else {
+            // redirect to login page
+            redirect('users/login');
+        }
+    }
+
+    function _is_user_logged_in()
+    {
+        $user_data_array = array(
+            $this->session->userdata('user_id'),
+            $this->session->userdata('user_name'),
+            $this->session->userdata('blog_name')
+        );
+        foreach ($user_data_array as $value) {
+            if(isset($value) === FALSE || empty($value)) {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
+    function _init_pagination($limit, $max_rows)
+    {
+        // pagination settings
+        $this->load->library('pagination');
+        $config = array(
+            'base_url' => site_url("articles/index"),
+            'total_rows' => $max_rows,
+            'per_page' => $limit,
+            'full_tag_open' => '<ul class="pagination">',
+            'full_tag_close' => '</ul>',
+            'cur_tag_open' => '<li class="active"><a href="#">',
+            'cur_tag_close' => '</a></li>',
+            'next_link' => '»',
+            'next_tag_open' => '<li>',
+            'next_tag_close' => '</li>',
+            'prev_link' => '«',
+            'prev_tag_open' => '<li>',
+            'prev_tag_close' => '</li>',
+            'num_tag_open' => '<li>',
+            'num_tag_close' => '</li>');
+        $this->pagination->initialize($config);
     }
 
     public function create()
     {
-        $this->_setup_form_validations();
-
-        if($this->form_validation->run() === FALSE)
+        if($this->_setup_form_validations() === FALSE)
         {
             $this->_display_create_page();
         } else {
+            echo 'else';
             // save article
             $result = $this->article_model->create($this->session->userdata('user_id'));
             if($result) {
@@ -30,11 +92,9 @@ class Articles extends CI_Controller
 
     function _setup_form_validations()
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('content', 'content', 'required');
+        return $this->form_validation->run();
     }
 
     function _display_create_page($data = array())

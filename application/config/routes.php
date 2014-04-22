@@ -38,9 +38,10 @@
 |
 */
 
-$route['home/(:any)'] = 'users/home/$1';
-$route['home'] = 'users/home';
-$route['default_controller'] = "users";
+$route['articles/index/(:any)'] = 'articles/index/$1';
+$route['articles/(:any)'] = 'articles/$1';
+$route['home'] = 'articles/index';
+$route['default_controller'] = "articles";
 $route['404_override'] = '';
 
 
