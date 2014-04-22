@@ -12,7 +12,7 @@ class Articles extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function index($offset = 0)
+    public function index($offset = 0, $data = array())
     {
         if($this->_is_user_logged_in()) {
             $blog_name = $this->session->userdata('blog_name');
@@ -25,7 +25,7 @@ class Articles extends CI_Controller
 
             $data['page_title'] = $blog_name;
             $this->load->view('templates/header', $data);
-            $this->load->view('home');
+            $this->load->view('home', $data);
             $this->load->view('articles/index', $data);
             $this->load->view('templates/footer');
         } else {
@@ -114,7 +114,31 @@ class Articles extends CI_Controller
 
     public function edit($id)
     {
-        echo 'TODO edit : '.$id;
+        $article = $this->article_model->get_article($id);
+        $data['id'] = $id;
+        $data['title'] = $article->title;
+        $data['content'] = $article->content;
+
+        $data['page_title'] = 'ブログ記事を編集';
+        $this->load->view('templates/header', $data);
+        $this->load->view('articles/edit', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function update()
+    {
+        $id = $this->input->post('id');
+        if( $this->_setup_form_validations() === FALSE ) {
+            $this->edit($id);
+        } else {
+            if($this->article_model->update($id)) {
+                $data['success'] = '保存しました';
+                $this->index(0, $data);
+            } else {
+                $data['error'] = '保存に失敗しました';
+                $this->edit();
+            }
+        }
     }
 }
 /* end of controllers/articles.php */

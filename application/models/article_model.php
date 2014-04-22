@@ -12,6 +12,12 @@ class Article_model extends CI_Model
         $this->load->database();
     }
 
+    public function get_article($article_id)
+    {
+        $query = $this->db->get_where('articles', array('id' => $article_id));
+        return $query->row();
+    }
+
     public function get_articles($user_id, $limit, $offset)
     {
         $this->db->from('articles')->where(array('user_id' => $user_id))->order_by('date_created', 'DESC');
@@ -42,6 +48,20 @@ class Article_model extends CI_Model
         );
 
         return $this->db->insert('articles', $data);
+    }
+
+    public function update($id)
+    {
+        $today = date('Y-m-d H:i:s');
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'content' => $this->input->post('content'),
+            'date_modified' => $today
+        );
+
+        $this->db->where('id', $id);
+        return $this->db->update('articles', $data);
     }
 }
 /* end of models/article_model.php */
