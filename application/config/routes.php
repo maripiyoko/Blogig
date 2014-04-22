@@ -40,6 +40,7 @@
 
 $route['articles/index/(:any)'] = 'articles/index/$1';
 $route['articles/(:any)'] = 'articles/$1';
+$route['comments/(:any)'] = 'comments/$1';
 $route['home'] = 'articles/index';
 $route['default_controller'] = "articles";
 $route['404_override'] = '';

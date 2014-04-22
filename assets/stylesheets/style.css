@@ -17,3 +17,7 @@ body {
 .preview-content {
   margin-top: 40px;
 }
+
+#new_comment {
+  display: none;
+}

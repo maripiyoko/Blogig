@@ -10,6 +10,7 @@
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/markdown/marked.js"></script>
     <script src="<?php echo base_url(); ?>assets/javascripts/markdown-preview.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascripts/comments.js"></script>
 </head>
 <body>
     <div class="container">

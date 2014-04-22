@@ -6,6 +6,7 @@ class Articles extends CI_Controller
     {
         parent::__construct();
         $this->load->model('article_model');
+        $this->load->model('comment_model');
         $this->load->library('session');
         $this->load->library('md');
         $this->load->helper('form');
@@ -104,6 +105,17 @@ class Articles extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function show($id, $data = array())
+    {
+        $data = $this->_get_article_data($id);
+        $data['comments'] = $this->comment_model->get_comments($id);
+
+        $data['page_title'] = 'ブログ記事をの閲覧';
+        $this->load->view('templates/header', $data);
+        $this->load->view('articles/show', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function delete()
     {
         //$this->output->enable_profiler(TRUE);
@@ -116,15 +128,21 @@ class Articles extends CI_Controller
 
     public function edit($id)
     {
-        $article = $this->article_model->get_article($id);
-        $data['id'] = $id;
-        $data['title'] = $article->title;
-        $data['content'] = $article->content;
+        $data = $this->_get_article_data($id);
 
         $data['page_title'] = 'ブログ記事を編集';
         $this->load->view('templates/header', $data);
         $this->load->view('articles/edit', $data);
         $this->load->view('templates/footer');
+    }
+
+    function _get_article_data($id)
+    {
+        $article = $this->article_model->get_article($id);
+        $data['id'] = $id;
+        $data['title'] = $article->title;
+        $data['content'] = $article->content;
+        return $data;
     }
 
     public function update()
