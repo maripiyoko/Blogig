@@ -8,6 +8,8 @@
     <?php echo link_tag('assets/stylesheets/style.css'); ?>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery-1.11.0.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/markdown/marked.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascripts/markdown-preview.js"></script>
 </head>
 <body>
     <div class="container">
