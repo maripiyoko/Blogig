@@ -11,7 +11,7 @@
                 </form>
             </div>
             <div class="content panel-body">
-                <?php echo $html = $this->md->defaultTransform($item->content); ?>
+                <?php echo $html = $this->md->transform($item->content); ?>
             </div>
             <div class="date">作成日 : <?php echo $item->date_created; ?></div>
         </div>
