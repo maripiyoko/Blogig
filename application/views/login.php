@@ -1,3 +1,4 @@
+<?php $this->load->view('templates/header'); ?>
 <?php $this->load->view('shared/error');?>
 <div class="row">
     <div id="main" class="col-sm-12">
@@ -17,3 +18,4 @@
         </div>
     </div>
 </div>
+<?php $this->load->view('templates/footer'); ?>
