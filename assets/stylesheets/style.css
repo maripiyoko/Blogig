@@ -21,3 +21,11 @@ body {
 #new_comment {
   display: none;
 }
+
+.other {
+  display: none;
+}
+
+#comments .comment {
+  min-height: 64px;
+}
