@@ -13,6 +13,6 @@
     <div class="container">
     <div class="row">
     <div class="col-sm-12">
-        <h1><?php echo $title; ?></h1>
+        <h1><?php echo $page_title; ?></h1>
     </div>
 </div>
