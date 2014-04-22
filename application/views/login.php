@@ -1,9 +1,6 @@
+<?php $this->load->view('shared/error');?>
 <div class="row">
     <div id="main" class="col-sm-12">
-        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-        <?php if(isset($error)) {
-            echo '<div class="alert alert-danger">'.$error.'</div>';
-        }?>
         <div id="login" class="jumbotron">
             <?php echo form_open('users/login') ?>
                 <div class="form-group">

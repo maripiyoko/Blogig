@@ -1,11 +1,4 @@
-<div class="row">
-    <div class="col-sm-12">
-        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-        <?php if(isset($error)) {
-            echo '<div class="alert alert-danger">'.$error.'</div>';
-        }?>
-    </div>
-</div>
+<?php $this->load->view('shared/error');?>
 <div class="row">
     <div class="col-sm-6">
         <?php echo form_open('articles/update') ?>
