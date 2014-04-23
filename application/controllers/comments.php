@@ -37,7 +37,7 @@ class Comments extends CI_Controller
 
     public function delete()
     {
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
         $article_id = $this->input->post('article_id');
         $comment_id = $this->input->post('comment_id');
         if($this->comment_model->delete($comment_id)) {

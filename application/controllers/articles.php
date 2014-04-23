@@ -15,11 +15,16 @@ class Articles extends CI_Controller
 
     public function index($offset = 0, $data = array())
     {
+        //$this->output->enable_profiler(TRUE);
         if($this->_is_user_logged_in()) {
             $blog_name = $this->session->userdata('blog_name');
             $user_id = $this->session->userdata('user_id');
             $limit = 5;
             $result = $this->article_model->get_articles($user_id, $limit, $offset);
+            foreach ($result['query'] as $article) {
+                $num_comments = $this->comment_model->get_num_comments($article->id);
+                $article->num_comments = $num_comments;
+            }
             $data['articles'] = $result['query'];
 
             $this->_init_pagination($limit, $result['count']);

@@ -15,7 +15,11 @@
             <div class="title">
                 <div class="article-title">
                     <?php echo anchor("articles/show/".$item->id, $item->title, array('title' => "記事の詳細ページへ")); ?>
+                    <?php if($item->num_comments > 0) {
+                        echo '<div class="comment badge">'.$item->num_comments.' comments</div>';
+                    } ?>
                 </div>
+
             </div>
             <div class="content">
                 <?php echo $html = $this->md->transform($item->content); ?>

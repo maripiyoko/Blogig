@@ -46,9 +46,20 @@ class Comment_model extends CI_Model
 
     public function get_comments($article_id)
     {
-        $this->db->from('comments')->where(array('article_id' => $article_id))->order_by('date_created', 'DESC');
+        $this->db->from('comments')
+            ->where(array('article_id' => $article_id))
+            ->order_by('date_created', 'DESC');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function get_num_comments($article_id)
+    {
+        $query = $this->db
+              ->select('count(article_id) AS num_comments')
+              ->where(array('article_id' => $article_id))
+              ->get('comments');
+        return $query->row()->num_comments;
     }
 
     public function delete($id)
