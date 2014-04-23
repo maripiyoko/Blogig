@@ -106,6 +106,7 @@ class Articles extends CI_Controller
         $data['comments'] = $this->comment_model->get_comments($id);
 
         $data['page_title'] = 'ブログ記事の閲覧';
+        $data['show_edit_link'] = TRUE;
         $this->load->view('articles/show', $data);
     }
 

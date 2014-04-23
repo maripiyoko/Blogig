@@ -1,5 +1,8 @@
 <?php $this->load->view('templates/header'); ?>
 <?php $this->load->view('shared/error');?>
+<?php if(isset($show_edit_link)) {
+    $this->load->view('articles/menu');
+} ?>
 <div class="row">
     <div class="col-sm-6">
         <?php $this->load->view('articles/preview');?>
