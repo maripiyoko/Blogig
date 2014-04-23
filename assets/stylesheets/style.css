@@ -4,14 +4,14 @@ body {
   font-family: Meiryo, 'メイリオ', 'Hiragino Kaku Gothic Pro', sans-serif;
 }
 
-.title {
+.article {
   position: relative;
 }
 
-.title .delete {
+.article .delete {
   position: absolute;
   right: 20px;
-  top: 3px;
+  bottom: 17px;
 }
 
 .preview-content {
@@ -28,4 +28,18 @@ body {
 
 #comments .comment {
   min-height: 64px;
+}
+
+.article {
+  margin-bottom: 40px;
+}
+.article-title {
+  font-size: 34px;
+}
+
+.content {
+  background: white;
+  padding: 20px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
 }
