@@ -1,11 +1,5 @@
-<div class="row">
-    <div class="col-sm-12">
-        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-        <?php if(isset($error)) {
-            echo '<div class="alert alert-danger">'.$error.'</div>';
-        }?>
-    </div>
-</div>
+<?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('shared/error');?>
 <div class="row">
     <div class="col-sm-6">
         <?php echo form_open('articles/update') ?>
@@ -19,15 +13,11 @@
                 <textarea class="form-control" name="content" id="content" rows="20"><?php echo $content; ?></textarea>
             </div>
             <input type="submit" class="btn btn-primary" value="保存">
-            <?php echo anchor("articles/index/", 'キャンセル', array('class' => "btn")); ?>
+            <?php echo anchor("articles/show/".$id, 'キャンセル', array('class' => "btn")); ?>
         </form>
     </div>
     <div class="col-sm-6">
-        <div class="preview-title">
-            <h1><?php echo $title; ?></h1>
-        </div>
-        <div class="preview-content">
-            <?php echo $html = $this->md->transform($content); ?>
-        </div>
+        <?php $this->load->view('articles/preview');?>
     </div>
 </div>
+<?php $this->load->view('templates/footer'); ?>

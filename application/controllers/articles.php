@@ -6,28 +6,32 @@ class Articles extends CI_Controller
     {
         parent::__construct();
         $this->load->model('article_model');
+        $this->load->model('comment_model');
         $this->load->library('session');
         $this->load->library('md');
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->helper('MY_date');
     }
 
     public function index($offset = 0, $data = array())
     {
+        //$this->output->enable_profiler(TRUE);
         if($this->_is_user_logged_in()) {
             $blog_name = $this->session->userdata('blog_name');
             $user_id = $this->session->userdata('user_id');
             $limit = 5;
             $result = $this->article_model->get_articles($user_id, $limit, $offset);
+            foreach ($result['query'] as $article) {
+                $num_comments = $this->comment_model->get_num_comments($article->id);
+                $article->num_comments = $num_comments;
+            }
             $data['articles'] = $result['query'];
 
             $this->_init_pagination($limit, $result['count']);
 
             $data['page_title'] = $blog_name;
-            $this->load->view('templates/header', $data);
-            $this->load->view('home', $data);
             $this->load->view('articles/index', $data);
-            $this->load->view('templates/footer');
         } else {
             // redirect to login page
             redirect('users/login');
@@ -99,9 +103,17 @@ class Articles extends CI_Controller
     function _display_create_page($data = array())
     {
         $data['page_title'] = '新しいブログ記事を作成';
-        $this->load->view('templates/header', $data);
-        $this->load->view('articles/create');
-        $this->load->view('templates/footer');
+        $this->load->view('articles/create', $data);
+    }
+
+    public function show($id, $data = array())
+    {
+        $data = $this->_get_article_data($id);
+        $data['comments'] = $this->comment_model->get_comments($id);
+
+        $data['page_title'] = 'ブログ記事の閲覧';
+        $data['show_edit_link'] = TRUE;
+        $this->load->view('articles/show', $data);
     }
 
     public function delete()
@@ -114,17 +126,26 @@ class Articles extends CI_Controller
         $this->index(0, $data);
     }
 
-    public function edit($id)
+    public function edit($id, $data = array())
+    {
+        $data = $this->_get_article_data($id);
+
+        $data['page_title'] = 'ブログ記事を編集';
+        $this->load->view('articles/edit', $data);
+    }
+
+    function _get_article_data($id)
     {
         $article = $this->article_model->get_article($id);
         $data['id'] = $id;
         $data['title'] = $article->title;
         $data['content'] = $article->content;
+        $data['date_created'] = $article->date_created;
+        if(is_valid_date_range($article->date_modified)) {
+            $data['date_modified'] = $article->date_modified;
+        }
 
-        $data['page_title'] = 'ブログ記事を編集';
-        $this->load->view('templates/header', $data);
-        $this->load->view('articles/edit', $data);
-        $this->load->view('templates/footer');
+        return $data;
     }
 
     public function update()
@@ -135,10 +156,10 @@ class Articles extends CI_Controller
         } else {
             if($this->article_model->update($id)) {
                 $data['success'] = '保存しました';
-                $this->index(0, $data);
+                $this->show($id, $data);
             } else {
                 $data['error'] = '保存に失敗しました';
-                $this->edit();
+                $this->edit($id, $data);
             }
         }
     }

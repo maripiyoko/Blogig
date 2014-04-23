@@ -1,11 +1,5 @@
-<div class="row">
-    <div class="col-sm-12">
-        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-        <?php if(isset($error)) {
-            echo '<div class="alert alert-danger">'.$error.'</div>';
-        }?>
-    </div>
-</div>
+<?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('shared/error');?>
 <div class="row">
     <div class="col-sm-6">
         <?php echo form_open('articles/create') ?>
@@ -22,7 +16,7 @@
         </form>
     </div>
     <div class="col-sm-6">
-        <div class="preview-title"></div>
-        <div class="preview-content"></div>
+        <?php $this->load->view('articles/preview');?>
     </div>
 </div>
+<?php $this->load->view('templates/footer'); ?>

@@ -45,9 +45,7 @@ class Users extends CI_Controller
     function _display_login_page($data = array())
     {
         $data['page_title'] = 'Login';
-        $this->load->view('templates/header', $data);
-        $this->load->view('login');
-        $this->load->view('templates/footer');
+        $this->load->view('login', $data);
     }
 
 }

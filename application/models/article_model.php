@@ -43,7 +43,6 @@ class Article_model extends CI_Model
             'title' => $this->input->post('title'),
             'content' => $this->input->post('content'),
             'date_created' => $today,
-            'date_modified' => $today,
             'user_id' => $user_id
         );
 
