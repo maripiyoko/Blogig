@@ -34,6 +34,17 @@ class Comments extends CI_Controller
         }
         redirect('articles/show/'.$article_id, $data);
     }
+
+    public function delete()
+    {
+        $this->output->enable_profiler(TRUE);
+        $article_id = $this->input->post('article_id');
+        $comment_id = $this->input->post('comment_id');
+        if($this->comment_model->delete($comment_id)) {
+            $this->session->set_flashdata('success', 'コメントを削除しました。');
+        }
+        redirect('articles/show/'.$article_id, $data);
+    }
 }
 
 /* end of controllers/comments.php */

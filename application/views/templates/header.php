@@ -10,6 +10,7 @@
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/marked.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/holder.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascripts/common.js"></script>
     <script src="<?php echo base_url(); ?>assets/javascripts/markdown-preview.js"></script>
     <script src="<?php echo base_url(); ?>assets/javascripts/editable.js"></script>
 </head>

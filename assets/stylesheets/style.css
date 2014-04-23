@@ -26,6 +26,17 @@ body {
   cursor: pointer;
 }
 
+.editable-item {
+  position: relative;
+}
+
+.editable-item .delete {
+  position: absolute;
+  right: 0;
+  color: #d9534f;
+  cursor: pointer;
+}
+
 #comments .comment {
   min-height: 64px;
 }
