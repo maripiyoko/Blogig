@@ -6,12 +6,13 @@
     </div>
     <div class="col-sm-6">
         <h2>コメント一覧</h2>
-        <a id="add_comment" href="#">
-            <span>コメントを追加する</span>
-            <span class="other">やめる</span>
-        </a>
-        <div id="comments">
+        <div class="editable-item">
+            <div class="view">
+                <a href="#">コメントを追加する</a>
+            </div>
             <?php $this->load->view('comments/create');?>
+        </div>
+        <div id="comments">
             <?php $this->load->view('comments/index');?>
         </div>
     </div>

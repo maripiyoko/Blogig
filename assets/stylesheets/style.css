@@ -18,12 +18,12 @@ body {
   margin-top: 40px;
 }
 
-#new_comment {
+.editable-item .edit {
   display: none;
 }
 
-.other {
-  display: none;
+.editable-item .view {
+  cursor: pointer;
 }
 
 #comments .comment {

@@ -13,17 +13,35 @@ class Comment_model extends CI_Model
         $this->load->database();
     }
 
-    public function create($article_id, $user_id)
+    public function create($article_id, $user_id, $comment)
     {
+        if(empty($comment)) {
+            return FALSE;
+        }
         $today = date('Y-m-d H:i:s');
 
         $data = array(
-            'comment' => $this->input->post('comment'),
+            'comment' => $comment,
             'user_id' => $user_id,
             'date_created' => $today,
             'article_id' => $article_id
         );
         return $this->db->insert('comments', $data);
+    }
+
+    public function edit($id, $comment)
+    {
+        if(empty($comment)) {
+            return FALSE;
+        }
+        $today = date('Y-m-d H:i:s');
+
+        $data = array(
+            'comment' => $comment,
+            'date_modified' => $today
+        );
+        $this->db->where('id', $id);
+        return $this->db->update('comments', $data);
     }
 
     public function get_comments($article_id)

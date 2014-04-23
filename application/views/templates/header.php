@@ -11,7 +11,7 @@
     <script src="<?php echo base_url(); ?>assets/vendor/marked.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/holder.js"></script>
     <script src="<?php echo base_url(); ?>assets/javascripts/markdown-preview.js"></script>
-    <script src="<?php echo base_url(); ?>assets/javascripts/comments.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascripts/editable.js"></script>
 </head>
 <body>
     <div class="container">
