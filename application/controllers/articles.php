@@ -120,7 +120,7 @@ class Articles extends CI_Controller
         $this->index(0, $data);
     }
 
-    public function edit($id)
+    public function edit($id, $data = array())
     {
         $data = $this->_get_article_data($id);
 
@@ -145,10 +145,10 @@ class Articles extends CI_Controller
         } else {
             if($this->article_model->update($id)) {
                 $data['success'] = '保存しました';
-                $this->index(0, $data);
+                $this->show($id, $data);
             } else {
                 $data['error'] = '保存に失敗しました';
-                $this->edit();
+                $this->edit($id, $data);
             }
         }
     }
