@@ -18,8 +18,15 @@
                     <?php if($item->num_comments > 0) {
                         echo '<div class="comment badge">'.$item->num_comments.' comments</div>';
                     } ?>
-                </div>
 
+                </div>
+                <div class="published">
+                    <?php if($item->published) {
+                            echo '<span class="label label-warning">公開中</span>';
+                        } else {
+                            echo '<span class="label label-default">非公開</span>';
+                        };?>
+                </div>
             </div>
             <div class="content">
                 <?php echo $html = $this->md->transform($item->content); ?>

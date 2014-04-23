@@ -6,6 +6,7 @@ class Article_model extends CI_Model
     var $date_created = '';
     var $date_modified = '';
     var $user_id = '';
+    var $published = 0; // 0: 非公開 1: 公開
 
     function __construct()
     {
@@ -24,11 +25,12 @@ class Article_model extends CI_Model
         $tmp_db = clone $this->db;
         $count = $tmp_db->count_all_results();
         $query = $this->db->limit($limit, $offset)->get();
-        /*foreach ($query->result() as $row)
+/*        foreach ($query->result() as $row)
         {
            echo 'title'.$row->title;
            echo 'content'.$row->content;
            echo 'date'.$row->date_created;
+           echo 'published'.$row->published;
         }*/
         $data['query'] = $query->result();
         $data['count'] = $count;

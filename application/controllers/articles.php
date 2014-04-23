@@ -144,7 +144,7 @@ class Articles extends CI_Controller
         if(is_valid_date_range($article->date_modified)) {
             $data['date_modified'] = $article->date_modified;
         }
-
+        $data['published'] = $article->published;
         return $data;
     }
 
