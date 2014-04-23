@@ -11,6 +11,7 @@ class Articles extends CI_Controller
         $this->load->library('md');
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->helper('MY_date');
     }
 
     public function index($offset = 0, $data = array())
@@ -139,6 +140,11 @@ class Articles extends CI_Controller
         $data['id'] = $id;
         $data['title'] = $article->title;
         $data['content'] = $article->content;
+        $data['date_created'] = $article->date_created;
+        if(is_valid_date_range($article->date_modified)) {
+            $data['date_modified'] = $article->date_modified;
+        }
+
         return $data;
     }
 

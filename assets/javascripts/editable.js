@@ -8,9 +8,6 @@ $(function() {
   });
 
   $('.editable-item').on('blur', '.edit', function(e) {
-    $(this).slideToggle();
-    var $pair = $(this).closest('.editable-item').find('.view');
-    $pair.slideToggle();
-    //console.log('blur edit');
+    $(this).find('form').submit();
   });
 });

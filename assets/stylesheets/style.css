@@ -16,6 +16,7 @@ body {
 
 .preview-content {
   margin-top: 40px;
+  min-height: 300px;
 }
 
 .editable-item .edit {
@@ -24,6 +25,7 @@ body {
 
 .editable-item .view {
   cursor: pointer;
+  padding-right: 15px;
 }
 
 .editable-item {
