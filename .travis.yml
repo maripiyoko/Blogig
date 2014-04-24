@@ -1,4 +1,17 @@
-branches:
-  except:
-    - 2.1-stable
-    - master
+language: php
+php:
+  - 5.5
+  - hhvm
+
+mysql:
+  database: blogapp
+  username: blogapp
+  encoding: utf8
+
+install:
+  # install php packages required for running a web server from drush on php 5.3
+  - sudo apt-get install -y --force-yes php5-cgi php5-mysql
+
+notifications:
+  webhooks:
+    - https://idobata.io/hook/ac04f31c-3983-4637-b486-ea9d442f7e91
