@@ -56,3 +56,14 @@ body {
   border: 1px solid lightgray;
   margin-bottom: 10px;
 }
+
+.preview-thum-content {
+  min-height: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.preview-article {
+  margin-top: 40px;
+}

@@ -2,6 +2,6 @@
 <div class="time-header pull-right">
     記事公開日 : <?php echo $individual->date_published; ?>
 </div>
-<div class="article">
+<div class="preview-article">
     <?php echo $this->md->transform($individual->content); ?>
 </div>
