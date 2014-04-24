@@ -142,5 +142,11 @@ class Articles extends CI_Controller
             }
         }
     }
+
+    public function publish($id)
+    {
+        $this->article_model->toggle_published($id);
+        $this->index();
+    }
 }
 /* end of controllers/articles.php */

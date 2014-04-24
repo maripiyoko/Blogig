@@ -22,9 +22,11 @@
                 </div>
                 <div class="published">
                     <?php if($item->published) {
-                            echo '<span class="label label-warning">公開中</span>';
+                            echo anchor('articles/publish/'.$item->id,
+                                '公開中', array('class' => 'label label-warning'));
                         } else {
-                            echo '<span class="label label-default">非公開</span>';
+                            echo anchor('articles/publish/'.$item->id,
+                                '非公開', array('class' => 'label label-default'));
                         };?>
                 </div>
             </div>

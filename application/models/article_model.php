@@ -69,5 +69,20 @@ class Article_model extends CI_Model
     {
         return $this->db->delete('articles', array('id' => $id));
     }
+
+    public function toggle_published($id)
+    {
+        $query = $this->db->select('published')
+            ->where('id', $id)
+            ->get('articles');
+        $current = $query->row()->published;
+        if($current == 1) {
+            $to = 0;
+        } else {
+            $to = 1;
+        }
+        $this->db->where('id', $id);
+        return $this->db->update('articles', array('published' => $to));
+    }
 }
 /* end of models/article_model.php */
