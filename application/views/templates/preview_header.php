@@ -2,10 +2,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8" />
-    <title><?php echo $title ?></title>
+    <title><?php echo $page_title ?></title>
     <meta name="viewport" content="width=device-width"/>
-    <?php echo link_tag('assets/vendor/bootstrap/css/bootstrap.min.css'); ?>
-    <?php echo link_tag('assets/vendor/bootstrap/css/bootstrap-theme.min.css'); ?>
+    <?php echo link_tag('assets/vendor/bootstrap/themes/bootstrap.min.css'); ?>
+    <?php echo link_tag('assets/vendor/bootstrap/themes/bootstrap-theme.min.css'); ?>
     <?php echo link_tag('assets/stylesheets/style.css'); ?>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery-1.11.0.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -14,7 +14,7 @@
     <div class="container">
     <div class="row">
         <div id="header" class="col-sm-12">
-            <h1>News Splash</h1>
+            <h1><?php echo $page_title ?></h1>
         </div>
     </div>
 

@@ -29,5 +29,18 @@ class User_model extends CI_Model
             return array('error' => 'ユーザー名またはパスワードが違います。ログインできません。');
         }
     }
+
+    public function get_blog_title($blog_name)
+    {
+        $query = $this->db->select('blog_title')
+            ->where('blog_name', $blog_name)
+            ->get('users');
+        if($query->num_rows() === 1) {
+            $data['blog_title'] = $query->row()->blog_title;
+        } else {
+            $data['error'] = 'お探しのブログは見つかりませんでした。';
+        }
+        return $data;
+    }
 }
 /* end of models/user_model.php */
