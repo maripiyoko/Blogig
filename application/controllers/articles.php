@@ -17,6 +17,7 @@ class Articles extends CI_Controller
     {
         //$this->output->enable_profiler(TRUE);
         $blog_name = $this->session->userdata('blog_name');
+        $blog_title = $this->session->userdata('blog_title');
         $user_id = $this->session->userdata('user_id');
         $limit = 5;
         $result = $this->article_model->get_articles($user_id, $limit, $offset);
@@ -28,7 +29,7 @@ class Articles extends CI_Controller
 
         $this->_init_pagination($limit, $result['count']);
 
-        $data['page_title'] = $blog_name;
+        $data['page_title'] = $blog_title;
         $this->load->view('articles/index', $data);
     }
 

@@ -5,6 +5,7 @@ class User_model extends CI_Model
     var $user_name = '';
     var $password = '';
     var $blog_name = '';
+    var $blog_title = '';
     var $blog_description = '';
     var $date_created = '';
     var $date_modified = '';
