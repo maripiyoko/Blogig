@@ -22,7 +22,9 @@ class Article_model extends CI_Model
 
     public function get_articles($user_id, $limit, $offset)
     {
-        $this->db->from('articles')->where(array('user_id' => $user_id))->order_by('date_created', 'DESC');
+        $this->db->from('articles')
+            ->where(array('user_id' => $user_id))
+            ->order_by('date_created', 'DESC');
         $tmp_db = clone $this->db;
         $count = $tmp_db->count_all_results();
         $query = $this->db->limit($limit, $offset)->get();
@@ -36,6 +38,15 @@ class Article_model extends CI_Model
         $data['query'] = $query->result();
         $data['count'] = $count;
         return $data;
+    }
+
+    public function get_published_articles($blog_name)
+    {
+        $query = $this->db->from('articles')
+            ->where(array('published' => 1))
+            ->order_by('date_created', 'DESC')
+            ->get();
+        return $query->result();
     }
 
     public function create($user_id)
