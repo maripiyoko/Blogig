@@ -44,14 +44,20 @@ class Articles extends CI_Controller
             'full_tag_close' => '</ul>',
             'cur_tag_open' => '<li class="active"><a href="#">',
             'cur_tag_close' => '</a></li>',
-            'next_link' => '»',
+            'next_link' => '<span class="glyphicon glyphicon-chevron-right"></span>',
             'next_tag_open' => '<li>',
             'next_tag_close' => '</li>',
-            'prev_link' => '«',
+            'prev_link' => '<span class="glyphicon glyphicon-chevron-left"></span>',
             'prev_tag_open' => '<li>',
             'prev_tag_close' => '</li>',
             'num_tag_open' => '<li>',
-            'num_tag_close' => '</li>');
+            'num_tag_close' => '</li>',
+            'first_link' => '最初へ',
+            'first_tag_open' => '<li>',
+            'first_tag_close' => '</li>',
+            'last_link' => '最後へ',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>');
         $this->pagination->initialize($config);
     }
 
