@@ -22,7 +22,7 @@
         <div class="panel-body">
             <ul class="nav nav-pills nav-stacked">
             <?php foreach ($articles as $item): ?>
-                <li><?php echo anchor('blogs/'.$blog_name.'/pages/'.$item->digest, $item->title) ?></li>
+                <li><?php echo anchor('blogs/'.$blog_name.'/'.$item->digest, $item->title) ?></li>
             <?php endforeach ?>
             </ul>
         </div>

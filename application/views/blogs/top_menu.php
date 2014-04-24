@@ -15,8 +15,7 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="#">ホーム</a></li>
-                    <li><a href="#">ニュースを投稿</a></li>
+                    <li><?php echo anchor('blogs/'.$blog_name, 'ホーム'); ?></li>
                     <li><a href="#">このサイトについて</a></li>
                 </ul>
             </div>
