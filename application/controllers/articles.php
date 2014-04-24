@@ -7,50 +7,29 @@ class Articles extends CI_Controller
         parent::__construct();
         $this->load->model('article_model');
         $this->load->model('comment_model');
-        $this->load->library('session');
-        $this->load->library('md');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->helper('MY_date');
+        $this->load->library(array('form_validation', 'md'));
+        $this->load->helper(array('form', 'MY_date', 'MY_auth'));
+
+        varify_session();
     }
 
     public function index($offset = 0, $data = array())
     {
         //$this->output->enable_profiler(TRUE);
-        if($this->_is_user_logged_in()) {
-            $blog_name = $this->session->userdata('blog_name');
-            $user_id = $this->session->userdata('user_id');
-            $limit = 5;
-            $result = $this->article_model->get_articles($user_id, $limit, $offset);
-            foreach ($result['query'] as $article) {
-                $num_comments = $this->comment_model->get_num_comments($article->id);
-                $article->num_comments = $num_comments;
-            }
-            $data['articles'] = $result['query'];
-
-            $this->_init_pagination($limit, $result['count']);
-
-            $data['page_title'] = $blog_name;
-            $this->load->view('articles/index', $data);
-        } else {
-            // redirect to login page
-            redirect('users/login');
+        $blog_name = $this->session->userdata('blog_name');
+        $user_id = $this->session->userdata('user_id');
+        $limit = 5;
+        $result = $this->article_model->get_articles($user_id, $limit, $offset);
+        foreach ($result['query'] as $article) {
+            $num_comments = $this->comment_model->get_num_comments($article->id);
+            $article->num_comments = $num_comments;
         }
-    }
+        $data['articles'] = $result['query'];
 
-    function _is_user_logged_in()
-    {
-        $user_data_array = array(
-            $this->session->userdata('user_id'),
-            $this->session->userdata('user_name'),
-            $this->session->userdata('blog_name')
-        );
-        foreach ($user_data_array as $value) {
-            if(isset($value) === FALSE || empty($value)) {
-                return FALSE;
-            }
-        }
-        return TRUE;
+        $this->_init_pagination($limit, $result['count']);
+
+        $data['page_title'] = $blog_name;
+        $this->load->view('articles/index', $data);
     }
 
     function _init_pagination($limit, $max_rows)
