@@ -17,8 +17,8 @@ class Blogs extends CI_Controller
             show_404();
         }
         $data['page_title'] = $data['blog_title'];
-
-        $data['articles'] = $this->article_model->get_published_articles($blog_name);
+        $data['blog_name'] = $blog_name;
+        $data['articles'] = $this->article_model->get_recent_published_articles($blog_name);
 
         $this->load->view('blogs/index', $data);
     }

@@ -20,6 +20,11 @@
             <h3 class="panel-title">RECENT POSTS</h3>
         </div>
         <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+            <?php foreach ($articles as $item): ?>
+                <li><?php echo anchor('blogs/'.$blog_name.'/pages/'.$item->digest, $item->title) ?></li>
+            <?php endforeach ?>
+            </ul>
         </div>
     </div>
 </div>

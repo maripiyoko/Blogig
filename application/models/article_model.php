@@ -49,6 +49,16 @@ class Article_model extends CI_Model
         return $query->result();
     }
 
+    public function get_recent_published_articles($blog_name, $num = 10)
+    {
+        $query = $this->db->from('articles')
+            ->where(array('published' => 1))
+            ->order_by('date_created', 'DESC')
+            ->limit($num)
+            ->get();
+        return $query->result();
+    }
+
     public function create($user_id)
     {
         $today = get_formatted_today();
