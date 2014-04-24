@@ -8,6 +8,7 @@ class Blogs extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('article_model');
+        $this->load->library('md');
     }
 
     public function index($blog_name, $article_digest = NULL)

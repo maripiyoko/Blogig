@@ -20,6 +20,12 @@ class Article_model extends CI_Model
         return $query->row();
     }
 
+    public function get_article_by_digest($digest)
+    {
+        $query = $this->db->get_where('articles', array('digest' => $digest));
+        return $query->row();
+    }
+
     public function get_articles($user_id, $limit, $offset)
     {
         $this->db->from('articles')
@@ -44,7 +50,7 @@ class Article_model extends CI_Model
     {
         $query = $this->db->from('articles')
             ->where(array('published' => 1))
-            ->order_by('date_created', 'DESC')
+            ->order_by('date_published', 'DESC')
             ->get();
         return $query->result();
     }
