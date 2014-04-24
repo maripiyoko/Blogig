@@ -15,6 +15,6 @@ script: phpunit tests/
 notifications:
   webhooks:
     - https://idobata.io/hook/ac04f31c-3983-4637-b486-ea9d442f7e91
-  on_success: change # default: always
-  on_failure: always # default: always [always|never|change]
+  on_success: never # default: always
+  on_failure: change # default: always [always|never|change]
   on_start: false # default: false [true|false]
