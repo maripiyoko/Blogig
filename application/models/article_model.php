@@ -39,7 +39,7 @@ class Article_model extends CI_Model
 
     public function create($user_id)
     {
-        $today = date('Y-m-d H:i:s');
+        $today = get_formatted_today();
 
         $data = array(
             'title' => $this->input->post('title'),
@@ -53,7 +53,7 @@ class Article_model extends CI_Model
 
     public function update($id)
     {
-        $today = date('Y-m-d H:i:s');
+        $today = get_formatted_today();
 
         $data = array(
             'title' => $this->input->post('title'),

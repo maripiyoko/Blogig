@@ -18,7 +18,7 @@ class Comment_model extends CI_Model
         if(empty($comment)) {
             return FALSE;
         }
-        $today = date('Y-m-d H:i:s');
+        $today = get_formatted_today();
 
         $data = array(
             'comment' => $comment,
@@ -34,7 +34,7 @@ class Comment_model extends CI_Model
         if(empty($comment)) {
             return FALSE;
         }
-        $today = date('Y-m-d H:i:s');
+        $today = get_formatted_today();
 
         $data = array(
             'comment' => $comment,
