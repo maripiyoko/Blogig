@@ -3,6 +3,7 @@ class Article_model extends CI_Model
 {
     var $title = '';
     var $content = '';
+    var $digest = '';
     var $date_created = '';
     var $date_modified = '';
     var $user_id = '';
@@ -40,10 +41,12 @@ class Article_model extends CI_Model
     public function create($user_id)
     {
         $today = get_formatted_today();
+        $title = $this->input->post('title');
 
         $data = array(
-            'title' => $this->input->post('title'),
+            'title' => $title,
             'content' => $this->input->post('content'),
+            'digest' => md5($title.time()),
             'date_created' => $today,
             'user_id' => $user_id
         );
@@ -70,19 +73,26 @@ class Article_model extends CI_Model
         return $this->db->delete('articles', array('id' => $id));
     }
 
+    /**
+     * 最初の公開日のみ保存
+     */
     public function toggle_published($id)
     {
-        $query = $this->db->select('published')
+        $query = $this->db->select('published, date_published')
             ->where('id', $id)
             ->get('articles');
-        $current = $query->row()->published;
-        if($current == 1) {
-            $to = 0;
-        } else {
-            $to = 1;
+        $current_state = $query->row()->published;
+        $current_date_published = $query->row()->date_published;
+
+        $to = ($current_state == 1) ? 0 : 1;
+
+        $update_array = array('published' => $to);
+        if(is_valid_date_range($current_date_published) === FALSE) {
+            $update_array['date_published'] = get_formatted_today();
         }
+
         $this->db->where('id', $id);
-        return $this->db->update('articles', array('published' => $to));
+        return $this->db->update('articles', $update_array);
     }
 }
 /* end of models/article_model.php */
