@@ -8,7 +8,7 @@ class Articles extends CI_Controller
         $this->load->model('article_model');
         $this->load->model('comment_model');
         $this->load->library(array('form_validation', 'md'));
-        $this->load->helper(array('form', 'MY_date', 'MY_auth'));
+        $this->load->helper(array('form', 'MY_auth'));
 
         varify_session();
     }
@@ -17,6 +17,7 @@ class Articles extends CI_Controller
     {
         //$this->output->enable_profiler(TRUE);
         $blog_name = $this->session->userdata('blog_name');
+        $blog_title = $this->session->userdata('blog_title');
         $user_id = $this->session->userdata('user_id');
         $limit = 5;
         $result = $this->article_model->get_articles($user_id, $limit, $offset);
@@ -28,7 +29,7 @@ class Articles extends CI_Controller
 
         $this->_init_pagination($limit, $result['count']);
 
-        $data['page_title'] = $blog_name;
+        $data['page_title'] = $blog_title;
         $this->load->view('articles/index', $data);
     }
 
@@ -44,14 +45,20 @@ class Articles extends CI_Controller
             'full_tag_close' => '</ul>',
             'cur_tag_open' => '<li class="active"><a href="#">',
             'cur_tag_close' => '</a></li>',
-            'next_link' => '»',
+            'next_link' => '<span class="glyphicon glyphicon-chevron-right"></span>',
             'next_tag_open' => '<li>',
             'next_tag_close' => '</li>',
-            'prev_link' => '«',
+            'prev_link' => '<span class="glyphicon glyphicon-chevron-left"></span>',
             'prev_tag_open' => '<li>',
             'prev_tag_close' => '</li>',
             'num_tag_open' => '<li>',
-            'num_tag_close' => '</li>');
+            'num_tag_close' => '</li>',
+            'first_link' => '最初へ',
+            'first_tag_open' => '<li>',
+            'first_tag_close' => '</li>',
+            'last_link' => '最後へ',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>');
         $this->pagination->initialize($config);
     }
 
@@ -141,6 +148,12 @@ class Articles extends CI_Controller
                 $this->edit($id, $data);
             }
         }
+    }
+
+    public function publish($id)
+    {
+        $this->article_model->toggle_published($id);
+        $this->index();
     }
 }
 /* end of controllers/articles.php */

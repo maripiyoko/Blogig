@@ -15,4 +15,9 @@ function is_valid_date_range($date_string)
     return TRUE;
 }
 
+function get_formatted_today()
+{
+    return date('Y-m-d H:i:s');
+}
+
 /* end of MY_date_helper.php */

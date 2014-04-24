@@ -5,6 +5,7 @@ class User_model extends CI_Model
     var $user_name = '';
     var $password = '';
     var $blog_name = '';
+    var $blog_title = '';
     var $blog_description = '';
     var $date_created = '';
     var $date_modified = '';
@@ -27,6 +28,19 @@ class User_model extends CI_Model
         } else {
             return array('error' => 'ユーザー名またはパスワードが違います。ログインできません。');
         }
+    }
+
+    public function get_blog_title($blog_name)
+    {
+        $query = $this->db->select('blog_title')
+            ->where('blog_name', $blog_name)
+            ->get('users');
+        if($query->num_rows() === 1) {
+            $data['blog_title'] = $query->row()->blog_title;
+        } else {
+            $data['error'] = 'お探しのブログは見つかりませんでした。';
+        }
+        return $data;
     }
 }
 /* end of models/user_model.php */

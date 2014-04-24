@@ -35,6 +35,7 @@ class Users extends CI_Controller
             'user_id' => $query['id'],
             'user_name' => $query['user_name'],
             'blog_name' => $query['blog_name'],
+            'blog_title' => $query['blog_title'],
             'blog_description' => $query['blog_description']
         );
         $this->session->set_userdata($user_data);

@@ -9,7 +9,8 @@ function varify_session()
     $user_data_array = array(
         $CI->session->userdata('user_id'),
         $CI->session->userdata('user_name'),
-        $CI->session->userdata('blog_name')
+        $CI->session->userdata('blog_name'),
+        $CI->session->userdata('blog_title')
     );
     foreach ($user_data_array as $value) {
         if(isset($value) === FALSE || empty($value)) {
