@@ -20,4 +20,4 @@ function varify_session()
     return TRUE;
 }
 
-/* end of helpers/My_session_manager.php */
+/* end of helpers/my_auth_helper.php */

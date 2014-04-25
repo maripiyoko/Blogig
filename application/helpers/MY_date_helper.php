@@ -20,4 +20,4 @@ function get_formatted_today()
     return date('Y-m-d H:i:s');
 }
 
-/* end of MY_date_helper.php */
+/* end of my_date_helper.php */
