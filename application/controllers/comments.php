@@ -6,7 +6,7 @@ class Comments extends CI_Controller
     {
         parent::__construct();
         $this->load->model('comment_model');
-        $this->load->helper('MY_auth');
+        $this->load->helper('my_auth');
         varify_session();
     }
 

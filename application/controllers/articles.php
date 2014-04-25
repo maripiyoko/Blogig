@@ -8,7 +8,7 @@ class Articles extends CI_Controller
         $this->load->model('article_model');
         $this->load->model('comment_model');
         $this->load->library(array('form_validation', 'md'));
-        $this->load->helper(array('form', 'MY_auth'));
+        $this->load->helper(array('form', 'my_auth'));
 
         varify_session();
     }
