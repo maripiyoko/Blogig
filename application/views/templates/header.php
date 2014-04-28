@@ -20,7 +20,10 @@
     <?php $this->load->view('articles/top_menu'); ?>
     <div class="container">
     <div class="row">
-    <div class="col-sm-12">
-        <h1><?php echo $page_title; ?></h1>
+        <div class="col-sm-12">
+            <?php if(isset($page_title)) {
+                echo '<h1>'.$page_title.'</h1>';
+            }?>
+        </div>
     </div>
 </div>

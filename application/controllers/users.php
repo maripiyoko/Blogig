@@ -60,6 +60,26 @@ class Users extends CI_Controller
         $this->session->unset_userdata($user_data);
         redirect('blogs');
     }
+
+
+    public function create()
+    {
+        $this->output->enable_profiler(TRUE);
+        $data['page_title'] = '新規ユーザー作成';
+        // create new user and its blog
+        $this->form_validation->set_rules('user_name', 'ユーザー名', 'required|xss_clean');
+        $this->form_validation->set_rules('password', 'パスワード',
+            'trim|required|matches[passconf]|md5');
+        $this->form_validation->set_rules('passconf', 'パスワードの確認',
+            'trim|required');
+        $this->form_validation->set_rules('blog_name', 'ブログ識別名',
+            'trim|required|min_length[5]|max_length[12]|alpha_dash');
+        $this->form_validation->set_rules('blog_title', 'ブログタイトル', 'required');
+        if ($this->form_validation->run() === TRUE && $this->user_model->create()) {
+            $this->load->view('users/success', $data);
+        }
+        $this->load->view('users/create', $data);
+    }
 }
 
 /* end of controllers/users.php */
