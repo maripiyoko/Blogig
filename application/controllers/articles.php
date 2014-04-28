@@ -30,6 +30,8 @@ class Articles extends CI_Controller
         $this->_init_pagination($limit, $result['count']);
 
         $data['page_title'] = $blog_title;
+        $data['blog_name'] = $blog_name;
+        $data['article_hash'] = '';
         $this->load->view('articles/index', $data);
     }
 

@@ -17,6 +17,7 @@
     <link rel="Shortcut Icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
 </head>
 <body>
+    <?php $this->load->view('articles/top_menu'); ?>
     <div class="container">
     <div class="row">
     <div class="col-sm-12">

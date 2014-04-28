@@ -20,7 +20,9 @@
     <link rel="Shortcut Icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
 </head>
 <body>
+    <?php $this->load->view('blogs/top_menu'); ?>
     <div class="container">
+
     <div class="row">
         <div id="header" class="col-sm-12">
             <h1>
@@ -32,7 +34,7 @@
             </h1>
         </div>
     </div>
-    <?php $this->load->view('blogs/top_menu'); ?>
+
 
     <!-- main area -->
     <div class="row">
