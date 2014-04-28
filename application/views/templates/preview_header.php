@@ -2,7 +2,13 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8" />
-    <title><?php echo $page_title ?></title>
+    <title>
+        <?php if(isset($page_title)) {
+            echo $page_title;
+        } else {
+            echo 'Welcome to Blogig';
+        } ?>
+    </title>
     <meta name="viewport" content="width=device-width"/>
     <?php echo link_tag('assets/vendor/bootstrap/themes/bootstrap.css'); ?>
     <?php echo link_tag('assets/stylesheets/style.css'); ?>
@@ -17,7 +23,13 @@
     <div class="container">
     <div class="row">
         <div id="header" class="col-sm-12">
-            <h1><?php echo $page_title ?></h1>
+            <h1>
+                <?php if(isset($page_title)) {
+                    echo $page_title;
+                } else {
+                    echo 'Welcome to Blogig';
+                } ?>
+            </h1>
         </div>
     </div>
     <?php $this->load->view('blogs/top_menu'); ?>

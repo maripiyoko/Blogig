@@ -15,8 +15,12 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><?php echo anchor('blogs/'.$blog_name, 'ホーム'); ?></li>
-                    <li><a href="#">このサイトについて</a></li>
+                    <li>
+                        <?php if(isset($blog_name)) {
+                                echo anchor('blogs/'.$blog_name, 'ブログホーム');
+                            }?>
+                    </li>
+                    <li><?php echo anchor('blogs/', 'このサイトについて'); ?></li>
                 </ul>
             </div>
 
