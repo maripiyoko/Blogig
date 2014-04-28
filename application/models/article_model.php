@@ -121,5 +121,17 @@ class Article_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->update('articles', $update_array);
     }
+
+
+    public function get_open_blogs()
+    {
+        $query = $this->db->select('blog_name, blog_title, published')
+            ->from('users')
+            ->join('articles', 'users.id = articles.user_id')
+            ->having('published >= 1')
+            ->get();
+
+        return $query->result();
+    }
 }
 /* end of models/article_model.php */
