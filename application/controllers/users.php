@@ -48,6 +48,18 @@ class Users extends CI_Controller
         $this->load->view('login', $data);
     }
 
+    public function logout()
+    {
+        $user_data = array(
+            'user_id' => '',
+            'user_name' => '',
+            'blog_name' => '',
+            'blog_title' => '',
+            'blog_description' => ''
+        );
+        $this->session->unset_userdata($user_data);
+        redirect('blogs');
+    }
 }
 
 /* end of controllers/users.php */

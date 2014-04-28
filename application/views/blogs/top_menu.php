@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu">
                             <li><?php echo anchor('articles/create', '<span class="glyphicon glyphicon-pencil"></span> 新規投稿'); ?></li>
                             <li><?php echo anchor('', '<span class="glyphicon glyphicon-user"></span> プロファイル設定'); ?></li>
-                            <li><?php echo anchor('', '<span class="glyphicon glyphicon-log-out"></span> ログアウト'); ?></li>
+                            <li><?php echo anchor('users/logout', '<span class="glyphicon glyphicon-log-out"></span> ログアウト'); ?></li>
                         </ul>
                     </li>
                 </ul>
