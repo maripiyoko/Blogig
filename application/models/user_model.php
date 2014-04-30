@@ -66,5 +66,17 @@ class User_model extends CI_Model
 
         return $this->db->insert('users', $data);
     }
+
+    public function is_valid_user_name($user_name)
+    {
+        //TODO
+        return FALSE;
+    }
+
+    public function is_valid_blog_name($blog_name)
+    {
+        //TODO
+        return FALSE;
+    }
 }
 /* end of models/user_model.php */

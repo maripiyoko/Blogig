@@ -5,7 +5,11 @@
     <div class="form-group">
         <label class="col-sm-3 control-label" for="user_name">ユーザー名</label>
         <div class="col-sm-7">
-        <input class="form-control" type="text" name="user_name" value="<?php echo set_value('user_name'); ?>"/>
+        <input class="form-control check_unique"
+            type="text" name="user_name"
+            data-callback="users/is_valid_user_name"
+            data-min="5" data-max="12"
+            value="<?php echo set_value('user_name'); ?>"/>
         </div>
     </div>
 
@@ -26,7 +30,11 @@
     <div class="form-group">
         <label class="col-sm-3 control-label" for="blog_name">ブログ識別名</label>
         <div class="col-sm-7">
-        <input class="form-control" type="text" name="blog_name" value="<?php echo set_value('blog_name'); ?>"/>
+        <input class="form-control check_unique"
+            type="text" name="blog_name"
+            data-callback="users/is_valid_blog_name"
+            data-min="5" data-max="12"
+            value="<?php echo set_value('blog_name'); ?>"/>
         </div>
     </div>
 
