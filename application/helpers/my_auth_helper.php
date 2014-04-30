@@ -5,6 +5,14 @@
  */
 function varify_session()
 {
+    if(is_user_logged_in() === FALSE) {
+        redirect('users/login');
+    }
+    return TRUE;
+}
+
+function is_user_logged_in()
+{
     $CI = &get_instance();
     $user_data_array = array(
         $CI->session->userdata('user_id'),
@@ -14,7 +22,7 @@ function varify_session()
     );
     foreach ($user_data_array as $value) {
         if(isset($value) === FALSE || empty($value)) {
-            redirect('users/login');
+            return FALSE;
         }
     }
     return TRUE;
