@@ -3,7 +3,7 @@ class User_model extends CI_Model
 {
     var $id = '';
     var $user_name = '';
-    var $password = '';
+    var $password_digest = '';
     var $blog_name = '';
     var $blog_title = '';
     var $blog_description = '';
@@ -13,15 +13,19 @@ class User_model extends CI_Model
     function __construct()
     {
         $this->load->database();
+        $this->load->helper('security');
     }
 
     public function login()
     {
-        $this->user_name = $this->input->post('user_name');
-        $this->password = $this->input->post('password');
+        $user_name = $this->input->post('user_name');
+        $password = $this->input->post('password');
 
-        $condition =  array('user_name' => $this->user_name,
-            'password' => $this->password);
+        $password_digest = do_hash($password);
+        echo "\"".$password_digest."\"";
+
+        $condition =  array('user_name' => $user_name,
+            'password_digest' => $password_digest);
         $query = $this->db->get_where('users', $condition);
         if($query->num_rows() === 1) {
             return $query->row_array();
@@ -41,6 +45,38 @@ class User_model extends CI_Model
             $data['error'] = 'お探しのブログは見つかりませんでした。';
         }
         return $data;
+    }
+
+    public function create()
+    {
+        $user_name = $this->input->post('user_name');
+        $password = $this->input->post('password');
+        $password_digest = do_hash($password);
+        $blog_name = $this->input->post('blog_name');
+        $blog_title = $this->input->post('blog_title');
+        $today = get_formatted_today();
+
+        $data = array(
+           'user_name' => $user_name,
+           'password_digest' => $password_digest,
+           'blog_name' => $blog_name,
+           'blog_title' => $blog_title,
+           'date_created' => $today
+        );
+
+        return $this->db->insert('users', $data);
+    }
+
+    public function is_valid_user_name($user_name)
+    {
+        //TODO
+        return FALSE;
+    }
+
+    public function is_valid_blog_name($blog_name)
+    {
+        //TODO
+        return FALSE;
     }
 }
 /* end of models/user_model.php */

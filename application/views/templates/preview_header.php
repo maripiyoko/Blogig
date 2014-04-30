@@ -28,9 +28,7 @@
             <h1>
                 <?php if(isset($page_title)) {
                     echo $page_title;
-                } else {
-                    echo 'Welcome to Blogig';
-                } ?>
+                }?>
             </h1>
         </div>
     </div>

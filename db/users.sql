@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(20) NOT NULL COMMENT 'ブログ公開時のデフォルトURLにするので、英数字のみ許可' COLLATE 'utf8_unicode_ci',
-    `password` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
+    `password_digest` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
     `blog_name` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
     `blog_title` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
     `blog_description` VARCHAR(500) NULL DEFAULT NULL COMMENT 'ブログの説明文（無くても可）' COLLATE 'utf8_unicode_ci',
@@ -18,5 +18,5 @@ COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB;
 
 INSERT INTO `blogapp`.`users`
-(`user_name`, `password`, `blog_name`, `blog_title`, `blog_description`, `date_created`)
- VALUES ('testuser', 'foobar', 'testblog', 'テストブログ', 'テスト用に作成したブログです。', '2014-04-25 10:49:38');
+(`user_name`, `password_digest`, `blog_name`, `blog_title`, `blog_description`, `date_created`)
+ VALUES ('testuser', 'foobar', 'testblog', 'Test Blog', 'This is a blog for testing usage.', '2014-04-25 10:49:38');
