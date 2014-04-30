@@ -1,1 +1,0 @@
-Create user and its blogg successfully.

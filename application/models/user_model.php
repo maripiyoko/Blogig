@@ -13,16 +13,16 @@ class User_model extends CI_Model
     function __construct()
     {
         $this->load->database();
+        $this->load->helper('security');
     }
 
     public function login()
     {
-        $this->load->library('encrypt');
-
         $user_name = $this->input->post('user_name');
         $password = $this->input->post('password');
 
-        $password_digest = $this->encrypt->encode($password);
+        $password_digest = do_hash($password);
+        echo "\"".$password_digest."\"";
 
         $condition =  array('user_name' => $user_name,
             'password_digest' => $password_digest);
@@ -50,7 +50,8 @@ class User_model extends CI_Model
     public function create()
     {
         $user_name = $this->input->post('user_name');
-        $password_digest = $this->input->post('password'); // validation MD5
+        $password = $this->input->post('password');
+        $password_digest = do_hash($password);
         $blog_name = $this->input->post('blog_name');
         $blog_title = $this->input->post('blog_title');
         $today = get_formatted_today();
