@@ -6,6 +6,7 @@ class Images extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('form');
+        $this->load->model('image_model');
         varify_session();
     }
 
@@ -24,6 +25,8 @@ class Images extends CI_Controller
         } else {
             if($this->_save_uploaded_file($this->upload->data()) === FALSE ) {
                 $data = array('error' => 'ファイルが保存できませんでした。');
+            } else {
+                $data = array('success' => 'ファイルを保存しました');
             }
         }
         $this->load->view('upload_form', $data);
@@ -31,8 +34,10 @@ class Images extends CI_Controller
 
     function _save_uploaded_file($uploaded_file)
     {
-        if($uploaded_file['is_image'] ) {
-            echo 'TODO save file '.$uploaded_file['file_name'];
+        $user_id = get_login_user_id();
+        if($uploaded_file['is_image'] &&
+            $this->image_model->save_image($user_id, $uploaded_file)) {
+            return TRUE;
         }
         return FALSE;
     }

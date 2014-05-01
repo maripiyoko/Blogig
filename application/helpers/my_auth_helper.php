@@ -34,4 +34,10 @@ function get_login_user_name()
     return $CI->session->userdata('user_name');
 }
 
+function get_login_user_id()
+{
+    $CI = &get_instance();
+    return $CI->session->userdata('user_id');
+}
+
 /* end of helpers/my_auth_helper.php */
