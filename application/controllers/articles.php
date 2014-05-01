@@ -7,9 +7,8 @@ class Articles extends CI_Controller
         parent::__construct();
         $this->load->model('article_model');
         $this->load->model('comment_model');
-        $this->load->library(array('form_validation', 'md'));
+        $this->load->library(array('form_validation', 'md', 'my_image_handler'));
         $this->load->helper('form');
-
         varify_session();
     }
 
@@ -98,6 +97,11 @@ class Articles extends CI_Controller
     {
         $data = $this->_get_article_data($id);
         $data['comments'] = $this->comment_model->get_comments($id);
+        foreach ($data['comments'] as $comment) {
+            $image = $this->my_image_handler
+                ->get_user_profile_image_as_base64($comment->user_id);
+            $comment->user_image = $image;
+        }
 
         $data['page_title'] = 'ブログ記事の閲覧';
         $data['show_edit_link'] = TRUE;
