@@ -106,18 +106,21 @@ class Users extends CI_Controller
 
     public function edit()
     {
+        varify_session();
         $data['page_title'] = 'ユーザープロファイル編集';
         $data['user_name'] = get_login_user_name();
 
         $user_id = get_login_user_id();
-        $image_id = $this->image_model->get_user_profile_image_id($user_id);
-        $result_data = $this->my_image_handler->save_image($user_id, $image_id);
+        if (isset($_FILES['userfile'])) {
+            $image_id = $this->image_model->get_user_profile_image_id($user_id);
+            $result_data = $this->my_image_handler->save_image($user_id, $image_id);
 
-        if(array_key_exists('error', $result_data)) {
-            $data['error'] = $result_data['error'];
-        }
-        if(array_key_exists('success', $result_data)) {
-            $data['success'] = $result_data['success'];
+            if(array_key_exists('error', $result_data)) {
+                $data['error'] = $result_data['error'];
+            }
+            if(array_key_exists('success', $result_data)) {
+                $data['success'] = $result_data['success'];
+            }
         }
 
         // 更新後の画像を再取得

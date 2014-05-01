@@ -32,8 +32,9 @@ class Image_model extends CI_Model
 
     function _save_iamge_user_relation($user_id, $image_id)
     {
-        $this->db->get_where('images_users', array('user_id' => $user_id));
-        if($this->db->count_all_results() == 0) {
+        $query = $this->db->get_where('images_users', array('user_id' => $user_id));
+        $data = $query->row_array();
+        if(empty($data)) {
             // insert relation
             $data = array(
                 'image_id' => $image_id,
@@ -100,7 +101,8 @@ class Image_model extends CI_Model
     public function get_user_profile_image_id($user_id)
     {
         $query = $this->db->get_where('images_users', array('user_id' => $user_id));
-        if($this->db->count_all_results() == 1) {
+        $data = $query->row_array();
+        if(! empty($data)) {
             return $query->row()->image_id;
         }
         return FALSE;
@@ -113,8 +115,12 @@ class Image_model extends CI_Model
             ->join('images_users', 'images.id = images_users.image_id')
             ->where('user_id', $user_id)
             ->get();
-        $image_content = $query->row()->raw_data;
-        $image_type = $query->row()->type;
+        $data = $query->row_array();
+        if(empty($data)) {
+            return '';
+        }
+        $image_content = $data['raw_data'];
+        $image_type = $data['type'];
         $encoded = base64_encode($image_content);
         return 'data:image/'.$image_type.';base64,'.$encoded;
     }
