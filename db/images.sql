@@ -1,7 +1,7 @@
 CREATE TABLE `images` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL COMMENT '画像ファイル名',
-    `type` TINYINT(2) NOT NULL COMMENT 'IMAGETYPE定数',
+    `type` VARCHAR(20) NOT NULL,
     `raw_data` MEDIUMBLOB NOT NULL,
     `thumb_data` BLOB NULL,
     `owner_id` INT(11) NOT NULL,
