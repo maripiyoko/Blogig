@@ -124,8 +124,7 @@ class Users extends CI_Controller
         }
 
         // 更新後の画像を再取得
-        $data['user_image'] = $this->image_model->
-            get_user_profile_image_as_base64($user_id);
+        $data['user_image'] = $this->my_image_handler->get_user_profile_image_as_base64($user_id);
         $this->load->view('users/edit', $data);
     }
 }

@@ -61,6 +61,11 @@ class My_image_handler {
         return FALSE;
     }
 
+    function get_user_profile_image_as_base64($user_id)
+    {
+        $CI = &get_instance();
+        return $CI->image_model->get_user_profile_image_as_base64($user_id);
+    }
 }
 
 /* end of libraries/my_file_upload.php */

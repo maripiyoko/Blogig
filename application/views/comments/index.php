@@ -1,7 +1,12 @@
 <?php foreach ($comments as $comment): ?>
     <div class="media">
         <div class="pull-left">
-            <img data-src="holder.js/64x64" class="img-circle" title="ユーザーアイコン">
+            <?php if(isset($comment->user_image)) {
+                echo '<img src="'.$comment->user_image.'" class="img-circle" title="ユーザーアイコン" width="50" height="50">';
+            } else {
+                echo '<img src="holder.js/64x64" class="img-circle" title="ユーザーアイコン">';
+            }?>
+
         </div>
         <div class="media-body comment editable-item">
             <div class="delete media-headding">
