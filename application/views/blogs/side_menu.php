@@ -1,5 +1,5 @@
 <!-- side menu -->
-<div class="col-sm-4 col-sm-push-8">
+<div class="col-sm-4">
     <div id="category" class="menu panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">CATEGORIES</h3>

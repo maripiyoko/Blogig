@@ -33,7 +33,5 @@
         </div>
     </div>
 
-
-    <!-- main area -->
+    <!-- start of 3rd row -->
     <div class="row">
-    <?php $this->load->view('blogs/side_menu'); ?>
