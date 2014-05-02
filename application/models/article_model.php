@@ -129,6 +129,7 @@ class Article_model extends CI_Model
             ->from('users')
             ->join('articles', 'users.id = articles.user_id')
             ->having('published >= 1')
+            ->group_by('blog_name, blog_title, published')
             ->get();
 
         return $query->result();
