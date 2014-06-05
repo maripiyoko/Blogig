@@ -19,4 +19,4 @@ ENGINE=InnoDB;
 
 INSERT INTO `blogapp`.`users`
 (`user_name`, `password_digest`, `blog_name`, `blog_title`, `blog_description`, `date_created`)
- VALUES ('testuser', 'foobar', 'testblog', 'Test Blog', 'This is a blog for testing usage.', '2014-04-25 10:49:38');
+ VALUES ('testuser', '8843d7f92416211de9ebb963ff4ce28125932878', 'testblog', 'Test Blog', 'This is a blog for testing usage.', '2014-04-25 10:49:38');
