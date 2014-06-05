@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(20) NOT NULL COMMENT 'ブログ公開時のデフォルトURLにするので、英数字のみ許可' COLLATE 'utf8_unicode_ci',
-    `password_digest` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
+    `password_digest` VARCHAR(50) NOT NULL COMMENT 'testuserのデフォルトはfoobar' COLLATE 'utf8_unicode_ci',
     `blog_name` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
     `blog_title` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
     `blog_description` VARCHAR(500) NULL DEFAULT NULL COMMENT 'ブログの説明文（無くても可）' COLLATE 'utf8_unicode_ci',
