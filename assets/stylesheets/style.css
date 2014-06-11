@@ -67,3 +67,8 @@ body {
 .preview-article {
   margin-top: 40px;
 }
+
+a.unlink {
+  pointer-events:none;
+  cursor:default;
+}

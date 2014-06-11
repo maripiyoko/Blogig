@@ -8,11 +8,11 @@
               <?php
                 if($this->session->userdata('user_id'))
                 {
-                  echo anchor('users/logout', '<span class="glyphicon glyphicon-eject"></span>');
+                  echo anchor('users/logout', '<span class="glyphicon glyphicon-log-out"></span>');
                 }
                 else
                 {
-                  echo anchor('users/login', '<span class="glyphicon glyphicon-lock"></span>');
+                  echo anchor('users/login', '<span class="glyphicon glyphicon-log-in"></span>');
                 }
               ?>
             </div>

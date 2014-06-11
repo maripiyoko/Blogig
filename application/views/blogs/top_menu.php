@@ -16,12 +16,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <?php if(isset($blog_name)) {
-                                echo anchor('blogs/index'.$blog_name, '<span class="glyphicon glyphicon-home"></span> ブログホーム');
-                            }?>
+                        <?php echo anchor('', '<span class="glyphicon glyphicon-inbox"></span> ブログポータル'); ?>
                     </li>
                     <li>
-                        <?php echo anchor('blogs/', 'このサイトについて'); ?>
+                        <?php if(isset($blog_name)) {
+                                echo anchor('blogs/'.$blog_name, '<span class="glyphicon glyphicon-home"></span> '.$blog_name.'ホーム');
+                            }?>
+                    </li>
+                  <?php if($this->session->userdata('user_id')){
+                    echo '<li>';
+                    echo anchor('home/','<span class="glyphicon glyphicon-tasks"></span> マイデスク');
+                    echo '</li>';
+                  };?>
+                    <li>
+                        <?php echo anchor('blogs/', '<span class="glyphicon glyphicon-list"></span> サイトマップ'); ?>
                     </li>
                     <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">メニュー <b class="caret"></b></a>
