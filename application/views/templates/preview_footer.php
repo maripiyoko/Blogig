@@ -3,7 +3,19 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <div class="footer well">Copyright &copy; 2014</div>
+            <div class="footer well">
+              Copyright &copy; 2014
+              <?php
+                if($this->session->userdata('user_id'))
+                {
+                  echo anchor('users/logout', '<span class="glyphicon glyphicon-log-out"></span>');
+                }
+                else
+                {
+                  echo anchor('users/login', '<span class="glyphicon glyphicon-log-in"></span>');
+                }
+              ?>
+            </div>
         </div>
     </div>
 </div><!-- container -->

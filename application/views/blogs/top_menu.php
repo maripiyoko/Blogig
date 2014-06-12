@@ -16,12 +16,22 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <?php echo anchor('', '<span class="glyphicon glyphicon-inbox"></span> ブログポータル'); ?>
+                    </li>
+                    <li>
                         <?php if(isset($blog_name)) {
-                                echo anchor('blogs/'.$blog_name, '<span class="glyphicon glyphicon-home"></span> ブログホーム');
+                                echo anchor('blogs/'.$blog_name, '<span class="glyphicon glyphicon-home"></span> '.$blog_name.'ホーム');
                             }?>
                     </li>
-                    <li><?php echo anchor('blogs/', 'このサイトについて'); ?></li>
-                    <li class="dropdown">
+                  <?php if($this->session->userdata('user_id')){
+                    echo '<li>';
+                    echo anchor('home/','<span class="glyphicon glyphicon-tasks"></span> マイデスク');
+                    echo '</li>';
+                  };?>
+                    <li>
+                        <?php echo anchor('blogs/', '<span class="glyphicon glyphicon-list"></span> サイトマップ'); ?>
+                    </li>
+                    <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">メニュー <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><?php echo anchor('articles/create', '<span class="glyphicon glyphicon-pencil"></span> 新規投稿'); ?></li>
@@ -29,7 +39,7 @@
                             <li><?php if(is_user_logged_in()) {
                                 echo anchor('users/logout', '<span class="glyphicon glyphicon-log-out"></span> ログアウト'); } ?></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
